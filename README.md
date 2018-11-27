@@ -1,3 +1,29 @@
+This is a fork of Salvatore Sanfilippo's SDS Simple Dynamic Strings library,
+lightly modified to build for 32-bit DOS, Windows, OS/2 and Linux using
+OpenWatcom C/C++ 1.9.
+
+It should still build OK with GNU C or Clang.
+
+It potentially may now build with Borland C++, Digital Mars C and Microsoft
+Visual C++, though this has not been tested.
+
+You can also build SDS for 16-bit DOS & OS/2 using OpenWatcom, however you'll
+encounter warnings:
+
+```sds.c(65): Warning! W135: Shift amount too large
+sds.c(65): Warning! W124: Comparison result always 0
+sds.c(218): Warning! W124: Comparison result always 0```
+
+And the sdscatfmt() test will fail. This may be fixed in future.
+
+The original source for SDS can be found at https://github.com/antirez/sds
+
+OpenWatcom can be downloaded from http://www.openwatcom.org/
+
+Salvatore's original text follows.
+
+---
+
 Simple Dynamic Strings
 ===
 

@@ -1,0 +1,12 @@
+CC=wcl386
+COPT=-zq -wx -ox -DSDS_TEST_MAIN
+
+all: sds-test
+
+sds-test: sds.c sds.h testhelp.h
+	$(CC) $(COPT) -fe=sds-test sds.c
+	@echo ">>> Type ./sds-test to run the sds.c unit tests."
+
+.IGNORE
+clean:
+	rm -f sds.o sds-test

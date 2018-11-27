@@ -89,12 +89,13 @@ static inline char sdsReqType(size_t string_size) {
 sds sdsnewlen(const void *init, size_t initlen) {
     void *sh;
     sds s;
+    int hdrlen;
+    unsigned char *fp; /* flags pointer. */
     char type = sdsReqType(initlen);
     /* Empty strings are usually created in order to append. Use type 8
      * since type 5 is not good at this. */
     if (type == SDS_TYPE_5 && initlen == 0) type = SDS_TYPE_8;
-    int hdrlen = sdsHdrSize(type);
-    unsigned char *fp; /* flags pointer. */
+    hdrlen = sdsHdrSize(type);
 
     sh = s_malloc(hdrlen+initlen+1);
     if (init==SDS_NOINIT)
@@ -1259,8 +1260,9 @@ int sdsTest(void) {
              * SDS header types. */
             for (i = 0; i < 10; i++) {
                 int oldlen = sdslen(x);
+                int type;
                 x = sdsMakeRoomFor(x,step);
-                int type = x[-1]&SDS_TYPE_MASK;
+                type = x[-1]&SDS_TYPE_MASK;
 
                 test_cond("sdsMakeRoomFor() len", sdslen(x) == oldlen);
                 if (type != SDS_TYPE_5) {
