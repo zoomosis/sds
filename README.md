@@ -10,9 +10,11 @@ Visual C++, though this has not been tested.
 You can also build SDS for 16-bit DOS & OS/2 using OpenWatcom, however you'll
 encounter warnings:
 
-```sds.c(65): Warning! W135: Shift amount too large
+```
+sds.c(65): Warning! W135: Shift amount too large
 sds.c(65): Warning! W124: Comparison result always 0
-sds.c(218): Warning! W124: Comparison result always 0```
+sds.c(218): Warning! W124: Comparison result always 0
+```
 
 And the sdscatfmt() test will fail. This may be fixed in future.
 
